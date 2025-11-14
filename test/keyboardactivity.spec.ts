@@ -59,6 +59,8 @@ test.describe.serial('Flow across test cases',async () => {
     test('clear', async ({}) => {
         const clear = page.getByRole('button', {name: 'Clear completed'});
         await clear.click();
+        
+        page.screenshot({path:'screenshot_1.png'})
     });
 
 });
