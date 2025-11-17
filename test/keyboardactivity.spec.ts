@@ -19,13 +19,13 @@ test.describe.serial('Flow across test cases',async () => {
         // const page:Page = await browser.newPage();
         await page.goto('https://demo.playwright.dev/todomvc/#/');
         const title = page.getByRole('heading', {name:'todos'});
-        expect(title).toBeVisible();
+        expect(title).toBeVisible(); //toBeVisible is used to check if the element is visible on the page.
         const addtodo = page.getByPlaceholder('What needs to be done?');
         await addtodo.fill('Bread');
-        await page.keyboard.press('Enter');
+        await page.keyboard.press('Enter'); //Enter key is used to perform the Enter keyboard action.
         await addtodo.fill('Butter');
         await page.keyboard.press('Enter');
-        await addtodo.fill('Milk');
+        await addtodo.fill('Milk'); //fill is used to fill the input field with the given text.
         await page.keyboard.press('Enter');
         await addtodo.fill('Car wash');
         await page.keyboard.press('Enter');
@@ -35,23 +35,23 @@ test.describe.serial('Flow across test cases',async () => {
 
     test('check Active Todos', async ({}) => {
         const active = page.getByText('Active');
-        await active.click();
+        await active.click(); //click is used to click the element.
     });
 
     test('check Completed Todos', async ({}) => {
-        const completed = page.getByText('Completed');
+        const completed = page.getByText('Completed'); //getByText is used to get the element by the text.
         await completed.click();
-        const all = page.locator('//a[text()="All"]');
+        const all = page.locator('//a[text()="All"]'); //locator is used to get the element by the locator.
         await all.click();
     });
 
     test('single check', async ({}) => {
-        const checkme = await page.$$('//input[@type="checkbox"]');
+        const checkme = await page.$$('//input[@type="checkbox"]'); //$$ is used to get all the elements by the locator.
         const checkmete = await page.$$('//input[@type="checkbox"]/following-sibling::label');
         for(let i=0; i<checkmete.length; i++){
-            const text = await checkmete[i].textContent();
+            const text = await checkmete[i].textContent(); //textContent is used to get the text content of the element.
             if(text === 'Milk'){
-                await checkme[i].check();
+                await checkme[i].check(); //check is used to check the checkbox.
             }
         }
     });
@@ -60,7 +60,7 @@ test.describe.serial('Flow across test cases',async () => {
         const clear = page.getByRole('button', {name: 'Clear completed'});
         await clear.click();
         
-        page.screenshot({path:'screenshot_1.png'})
+        page.screenshot({path:'screenshot_1.png'}); //screenshot is used to take a screenshot of the page.
     });
 
 });
