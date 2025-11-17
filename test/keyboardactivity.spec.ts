@@ -6,7 +6,7 @@ test.describe.serial('Flow across test cases',async () => {
     let page: Page;
 
     test.beforeAll(async () => {
-        browser = await chromium.launch({ headless: true });
+        browser = await chromium.launch({ headless: false });
         page = await browser.newPage();
     });
 
@@ -45,22 +45,31 @@ test.describe.serial('Flow across test cases',async () => {
         await all.click();
     });
 
-    test('single check', async ({}) => {
-        const checkme = await page.$$('//input[@type="checkbox"]'); //$$ is used to get all the elements by the locator.
-        const checkmete = await page.$$('//input[@type="checkbox"]/following-sibling::label');
-        for(let i=0; i<checkmete.length; i++){
-            const text = await checkmete[i].textContent(); //textContent is used to get the text content of the element.
-            if(text === 'Milk'){
-                await checkme[i].check(); //check is used to check the checkbox.
-            }
-        }
+    //WORKING CODE
+    // test('single check', async ({}) => {
+    //     const checkme = await page.$$('//input[@type="checkbox"]'); //$$ is used to get all the elements by the locator.
+    //     const checkmete = await page.$$('//input[@type="checkbox"]/following-sibling::label');
+    //     for(let i=0; i<checkmete.length; i++){
+    //         const text = await checkmete[i].textContent(); //textContent is used to get the text content of the element.
+    //         if(text === 'Milk'){
+    //             await checkme[i].check(); //check is used to check the checkbox.
+    //         }
+    //     }
+    // });
+    
+    //Working Code
+    test('list check', async ({}) =>{
+        //const todoItem = page.getByRole('listitem').filter({ hasText: 'Milk' }); //filter is used to filter the elements by the text.
+        const checkbox = page.getByTestId('todo-item').filter({ hasText: 'Milk' }).getByRole('checkbox');
+        await checkbox.check();
+
     });
 
     test('clear', async ({}) => {
         const clear = page.getByRole('button', {name: 'Clear completed'});
         await clear.click();
-        
-        page.screenshot({path:'screenshot_1.png'}); //screenshot is used to take a screenshot of the page.
+        await page.waitForTimeout(1000); //waitForTimeout is used to wait for the given time.
+        await page.screenshot({path:'screenshot_1.png'}); //screenshot is used to take a screenshot of the page.
     });
 
 });
