@@ -1,0 +1,92 @@
+1. what is CICD
+- Continuous Integration and Continuoud Delivery/Deployment
+- It helps in deploying the code on different environments faster after the unit tests
+- It is responsible for building codes, running tests and deploying the new code
+
+2. difference in Integration, Delivery and Deployment
+- Integration is a development practive where multiple developers add their updated code to the main branch
+- Delivery : All code changes are automatically delivered to testing and finally the project manager approves the code and then the code is deployed successfully
+- Deployment: All code changes are automatically deployed to production once it passes the testing phase and it does not require manual affirmation
+
+3. Benefit of CICD
+- Higher Efficiency
+- Reduced risk defects
+- Faster Delivery
+- Reduced Deployment risk
+- Better Collaboration
+- Automated processes
+
+4. Different Stages of CICD
+- Code commit
+- building
+- testing
+- Deployment
+- Release
+- Monitor and feedback
+
+5. Popular cicd tools
+- Github Actions
+- Gitlab
+- Jenkins
+- Azure Devops
+
+6. What are artifacts
+- 
+
+7. How do you trigger cicd pipeline
+- Code push
+- schedule trigger
+- Manual initiation
+
+8. Challenges in implementing CICD pipeline
+- 
+
+9. Blue-Green Deployment
+- Blue means the current stable version of the application which is available for the customer/users and is currently deployed
+- Green means the latest version of the application
+- When the green version is validated without any issues then the traffic is moved from Blue to Green version of the application
+- it gives minimal timeline for users to switch from old to new version
+- If there is any failure then the roll back can also be easily handled
+
+10. Canary Deployment
+- It is a method of Deployment where the small amount of traffic is moved to new version of the application.
+- it helps in validating the new version of the applicaion in the production environment.
+
+11. Rollback mechanisms
+- Automated rollback scripts: this can be trigerred when the issue is encountered
+- Version tagging: All version are tagged
+- Database Rollback: it reverts the database schema to the previous working version
+- Monitoring and Alerts: Continuous Monitoring in production environemnt to check the issues and alert the team.
+- Testing in Isolation: When the issues are found in testing then the version is rolled back to build phase
+- Post-Mortem Analysis: It helps to understand the issue and to resolve it faster and prevents the coming back of similar issue in the future
+
+12. Code Coverage
+- It is a measure of how much of the code is covered in the automated tests
+- 
+Example:
+Line Coverage:  how many lines of code is tested
+Function Coverage: fucntions are tested
+Branch Coverage: How many branches are tested, it is place of code like if statement
+Statement Coverage: proportion of specific statement in code in test
+
+13. Feature flag
+- also known as feature toggles or feature switches
+- development technique that turns certain functionality ON and OFF during runtime.
+- allows better control and more experimation.
+- Could be better use for Canary Deployment.
+
+14. Difference in Chaos engineering and Testing
+-
+
+15. Serverless Model
+- 
+
+16. Trunk based development
+- It is a branching model where most of the development happens in a single baranch
+called trunk or master or main. The trunk receives daily merges from the developers.
+
+17. How do you measure the success of a CICD pipeline
+- Lead time for changes: Amount of time it takes from code commit to deployment
+- Deployment frequency: More frequent deployment
+- Time to recover from failure: how quickly we can recover from failure
+
