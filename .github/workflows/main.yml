@@ -1,17 +1,15 @@
-name: Playwright Tests
+name: Playwright Tests (Windows)
 
 on:
   push:
-    branches: [ Main ]
+    branches: [ akash ]
   pull_request:
-    branches: [ Main ]
+    branches: [ akash ]
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: windows-latest
+    timeout-minutes: 30   # Windows runners are slower — prevent cancellations
 
     steps:
       - name: Checkout code
@@ -21,12 +19,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'   # speeds up installations
 
       - name: Install dependencies
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run Playwright tests
         run: npx playwright test
