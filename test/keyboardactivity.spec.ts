@@ -65,7 +65,7 @@ test.describe.serial('Flow across test cases',async () => {
 
     });
 
-    test('clear', async ({}) => {
+   test('clear', async ({}) => {
         const clear = page.getByRole('button', {name: 'Clear completed'});
         await clear.click();
         await page.waitForTimeout(1000); //waitForTimeout is used to wait for the given time.
