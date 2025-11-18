@@ -43,6 +43,7 @@ test.describe.serial('Flow across test cases',async () => {
         await completed.click();
         const all = page.locator('//a[text()="All"]'); //locator is used to get the element by the locator.
         await all.click();
+        await page.screenshot({path:'screenshot_3.png'});
     });
 
     //WORKING CODE
@@ -62,6 +63,7 @@ test.describe.serial('Flow across test cases',async () => {
         //const todoItem = page.getByRole('listitem').filter({ hasText: 'Milk' }); //filter is used to filter the elements by the text.
         const checkbox = page.getByTestId('todo-item').filter({ hasText: 'Milk' }).getByRole('checkbox');
         await checkbox.check();
+        await page.screenshot({path:'screenshot_1.png'});
 
     });
 
@@ -69,7 +71,7 @@ test.describe.serial('Flow across test cases',async () => {
         const clear = page.getByRole('button', {name: 'Clear completed'});
         await clear.click();
         await page.waitForTimeout(1000); //waitForTimeout is used to wait for the given time.
-        await page.screenshot({path:'screenshot_1.png'}); //screenshot is used to take a screenshot of the page.
+        await page.screenshot({path:'screenshot_2.png'}); //screenshot is used to take a screenshot of the page.
     });
 
 });
