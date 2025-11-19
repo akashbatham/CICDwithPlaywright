@@ -1,0 +1,100 @@
+✅ Mouse Actions in Playwright — Full Cheatsheet
+
+Playwright exposes mouse interactions through:
+
+const mouse = page.mouse;
+
+You can perform:
+Move cursor
+Click
+Double-click
+Right-click
+Drag & drop
+Hover
+Scroll (wheel)
+Down/up events (like pressing mouse button)
+
+Using modifiers (Shift, Ctrl, Alt, Meta)
+
+🎯 1. Basic Mouse Move
+    await page.mouse.move(300, 400);
+
+Moves the mouse to (x, y) on the page.
+
+🎯 2. Click
+    await page.mouse.click(200, 300);
+
+Equivalent to mouse.move → mouse.down → mouse.up.
+
+
+🎯For left/right/middle:
+    await page.mouse.click(200, 300, { button: 'left' });
+    await page.mouse.click(200, 300, { button: 'right' });
+    await page.mouse.click(200, 300, { button: 'middle' });
+
+🎯 3. Double Click
+    await page.mouse.dblclick(200, 300);
+
+🎯 4. Mouse Down & Up (holding mouse button)
+    await page.mouse.move(100, 200);
+    await page.mouse.down(); // press
+    await page.mouse.move(300, 400);
+    await page.mouse.up();   // release
+
+Useful for drag & drop.
+
+🎯 5. Hover
+    await page.hover('#element');
+
+Playwright automatically calculates coordinates for the selector.
+
+🎯 6. Drag & Drop
+Option A — Using the built-in dragAndDrop
+    await page.dragAndDrop('#source', '#target');
+
+Option B — Manual (more control)
+    const box = await page.locator('#source').boundingBox();
+    const target = await page.locator('#target').boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(target.x + target.width / 2, target.y + target.height / 2, { steps: 10 });
+    await page.mouse.up();
+
+🎯 7. Scroll / Mouse Wheel
+    await page.mouse.wheel(0, 500); // scroll down
+    await page.mouse.wheel(0, -300); // scroll up
+
+🎯 8. Using Keyboard Modifiers with Mouse
+    await page.keyboard.down('Shift');
+    await page.mouse.click(200, 300);
+    await page.keyboard.up('Shift');
+
+
+Useful for multi-select patterns.
+
+🎯 9. Mouse Click on an Element (recommended)
+
+Instead of x/y clicks, always prefer locators:
+    await page.locator('#btn').click();
+
+Locator-based clicks automatically:
+- Wait for element
+- Scroll into view
+- Retry on fail
+- Auto-hover
+- Auto-pixel-perfect click
+
+🔍 Complete Example — Selecting an Area with Mouse
+    await page.mouse.move(100, 100);
+    await page.mouse.down();
+    await page.mouse.move(500, 300, { steps: 20 });
+    await page.mouse.up();
+
+🧪 Example: Draw on Canvas
+    await page.mouse.move(200, 200);
+    await page.mouse.down();
+
+    for (let i = 0; i < 50; i++) {
+        await page.mouse.move(200 + i, 200 + i);
+    }
+    await page.mouse.up();

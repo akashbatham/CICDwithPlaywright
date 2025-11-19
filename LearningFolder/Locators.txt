@@ -54,4 +54,4 @@ DATA TEST ID Selector
 page.getByTestId(); 
 //data-testid is an element identifier, if the developer adds an identifier as data-akashid then
 you need to add "testIdAttribute : 'data-akashid'" in the USE section this will act as default 
-testID 
+testID
