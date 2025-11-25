@@ -2,6 +2,9 @@
 
 Playwright exposes mouse interactions through:
 
+mouse hover requires either the element or the co-ordinates of the element
+
+defining a conatant for mouse
 const mouse = page.mouse;
 
 You can perform:

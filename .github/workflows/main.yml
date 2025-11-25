@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'   # speeds up installations
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright Browsers
         run: npx playwright install
@@ -30,9 +30,13 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Upload Playwright Test Report
+      - name: Upload Playwright artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
-          path: playwright-report/
+          name: playwright-screenshots
+          path: |
+            playwright-report/
+            tests/results/
+            test-results/
+      
